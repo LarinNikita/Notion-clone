@@ -4,6 +4,7 @@ import { ChevronsLeft, MenuIcon, Plus, PlusCircle, Search, Settings, Trash } fro
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
 import { useSearch } from "@/hooks/use-search";
+import { useSettings } from "@/hooks/use-settings";
 import { useMediaQuery } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,7 @@ import {
 import { toast } from "sonner";
 
 export const Navigation = () => {
+    const settings = useSettings();
     const search = useSearch();
     const pathname = usePathname();
     const isMobile = useMediaQuery("(max-width: 768px)");
@@ -148,7 +150,7 @@ export const Navigation = () => {
                     <Item
                         label="Settings"
                         icon={Settings}
-                        onClick={() => { }}
+                        onClick={settings.onOpen}
                     />
                     <Item
                         onClick={handleCreate}
